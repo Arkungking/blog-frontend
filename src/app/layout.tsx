@@ -4,6 +4,7 @@ import "./globals.css";
 import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -32,7 +33,7 @@ export default function RootLayout({
       >
         <ReactQueryProvider>
           <Navbar />
-          {children}
+          <NuqsAdapter>{children}</NuqsAdapter>
         </ReactQueryProvider>
 
         <Toaster richColors position="top-right" />
