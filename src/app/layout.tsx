@@ -6,6 +6,7 @@ import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 import { SessionProvider } from "next-auth/react";
+import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +36,9 @@ export default function RootLayout({
         <SessionProvider>
           <ReactQueryProvider>
             <Navbar />
-            <NuqsAdapter>{children}</NuqsAdapter>
+            <NuqsAdapter>
+              <Suspense>{children}</Suspense>
+            </NuqsAdapter>
           </ReactQueryProvider>
         </SessionProvider>
 

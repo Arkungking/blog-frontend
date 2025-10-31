@@ -30,7 +30,6 @@ const WritePage = () => {
   const form = useForm<z.infer<typeof createBlogSchema>>({
     resolver: zodResolver(createBlogSchema),
     defaultValues: {
-      author: "",
       category: "",
       content: "",
       description: "",
@@ -83,20 +82,6 @@ const WritePage = () => {
                 <FormLabel>Category</FormLabel>
                 <FormControl>
                   <Input placeholder="Category" {...field} />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
-
-          <FormField
-            control={form.control}
-            name="author"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>Author</FormLabel>
-                <FormControl>
-                  <Input placeholder="Author" {...field} />
                 </FormControl>
                 <FormMessage />
               </FormItem>
