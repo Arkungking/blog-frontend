@@ -5,6 +5,7 @@ import ReactQueryProvider from "@/providers/ReactQueryProvider";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/sonner";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
+import { SessionProvider } from "next-auth/react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -31,10 +32,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <ReactQueryProvider>
-          <Navbar />
-          <NuqsAdapter>{children}</NuqsAdapter>
-        </ReactQueryProvider>
+        <SessionProvider>
+          <ReactQueryProvider>
+            <Navbar />
+            <NuqsAdapter>{children}</NuqsAdapter>
+          </ReactQueryProvider>
+        </SessionProvider>
 
         <Toaster richColors position="top-right" />
       </body>
