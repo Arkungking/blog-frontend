@@ -7,6 +7,8 @@ import Image from "next/image";
 import React, { useState } from "react";
 import { useDebounceValue } from "usehooks-ts";
 import { parseAsInteger, useQueryState } from "nuqs";
+import { link } from "fs";
+import Link from "next/link";
 
 const Home = () => {
   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
@@ -54,7 +56,8 @@ const Home = () => {
         <div className="grid grid-cols-3 gap-6">
           {blogs?.data.map((blog) => {
             return (
-              <div key={blog.id} className="rounded-xl border border-black p-6">
+              <Link key={blog.id} href={`/blogs/${blog.slug}`}>
+              <div className="rounded-xl border border-black p-6">
                 <Image
                   className="rounded-lg"
                   src={blog.thumbnail}
@@ -65,6 +68,7 @@ const Home = () => {
                 <h2 className="text-lg font-bold">{blog.title}</h2>
                 <p className="line-clamp-3">{blog.description}</p>
               </div>
+              </Link>
             );
           })}
         </div>
