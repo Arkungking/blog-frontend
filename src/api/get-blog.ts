@@ -8,6 +8,7 @@ export const getBlog = cache(async (slug: string) => {
   const response = await fetch(url + "/blogs/" + slug);
 
   if (!response.ok) return notFound();
+  
   const blog: Blog = await response.json();
   return blog;
 });
